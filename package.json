@@ -1,0 +1,87 @@
+{
+	"name": "cppinsights-vscode",
+	"displayName": "cppinsights-vscode",
+	"description": "CppInsights for Visual Studio Code",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.37.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.helloWorld",
+		"onLanguage:cpp"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World",
+				"category": "Cpp Insights"
+			},
+			{
+				"command": "extension.transformCpp",
+				"title": "Run insights on file",
+				"category": "Cpp Insights"
+			}
+		],
+		"configuration": {
+			"title": "CppInsights",
+			"properties": {
+				"cppinsights.binary": {
+					"type": "string",
+					"description": "Location of insights binary",
+					"default": "insights"
+				},
+				"cppinsights.standard": {
+					"type": "string",
+					"description": "C++ standard",
+					"default": "c++17",
+					"enum": ["c++98", "c++11", "c++14", "c++17", "c++2a"],
+					"enumDescriptions": [
+						"C++ 98", 
+						"C++ 11", 
+						"C++ 14", 
+						"C++ 17", 
+						"C++ 2a"
+					]
+				},
+				"cppinsights.styles.forAsWhile": {
+					"type": "boolean",
+					"description": "for-loops as while-loops",
+					"default": false
+				},
+				"cppinsights.styles.arraySubscription": {
+					"type": "boolean",
+					"description": "for-loops as while-loops",
+					"default": true
+				},
+				"cppinsights.transformations.implicitCasts": {
+					"type": "boolean",
+					"description": "Show all implicit casts",
+					"default": true
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/vscode": "^1.37.0",
+		"glob": "^7.1.4",
+		"mocha": "^6.1.4",
+		"typescript": "^3.3.1",
+		"tslint": "^5.12.1",
+		"vscode-test": "^1.0.2"
+	}
+}
